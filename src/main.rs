@@ -12,8 +12,7 @@ impl EventHandler for Handler {
 
 #[tokio::main]
 async fn main() {
-    let token = env::var("DISCORD_TOKEN") //let token = info::token(); // store token in env variable so as to not post it to github, otherwise use this commented code.
-        .expect("expected a token in the environment."); 
+    let token = info::token(); // store token in env variable so as to not post it to github.
     let intents = GatewayIntents::all();
     let mut client = Client::builder(&token, intents)
         .event_handler(Handler)
