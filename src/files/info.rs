@@ -7,10 +7,11 @@ pub const ADMINS: &'static [&str; 3] = &["132638288770105344", "1823837937164615
 
 fn is_test() -> bool {
     let test_flag = std::env::args().nth(1);
-    if let Some(v) = test_flag {
-        if v == "-t" {
+    if let Some(value) = test_flag {
+        if value == "-t" {
             return true
         } else {
+            println!("test flag is '-t'. defaulting to normal account.");
             return false
         }
     } else {
