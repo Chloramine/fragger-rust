@@ -1,5 +1,6 @@
 use std::env;
-use serenity::{all::*, framework::standard::{Configuration, macros::group}};
+use serenity::{all::*, framework::standard::{Configuration, macros::group}}; // serenity::all::* doesn't work? supposed to export most of the modules but it doesn't lol see: https://docs.rs/serenity/0.12.0/serenity/all/index.html
+
 mod files;
 mod commands;
 
@@ -20,13 +21,14 @@ struct General;
 
 #[tokio::main]
 async fn main() {
-    let token = files::info::token(); // store token in env variable so as to not post it to github.
+    let token = files::info::token();
     let intents = GatewayIntents::all();
     let framework = StandardFramework::new().group(&GENERAL_GROUP);
     framework.configure(
         Configuration::new().with_whitespace(true)
             .prefix(files::info::prefix())); // todo: incorporate info::ADMINS into .owners()
     let mut client = Client::builder(&token, intents)
+        .framework(framework)
         .event_handler(Handler)
         .await
         .expect("error creating client");

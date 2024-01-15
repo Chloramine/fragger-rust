@@ -20,5 +20,7 @@ Cargo.lock
 .vscode
 
 # Added by cargo
-
 /target
+
+# ignore .env file, saves having to put the tokens into your path
+.env
