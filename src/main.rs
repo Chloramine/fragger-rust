@@ -1,12 +1,12 @@
 use std::env;
-use serenity::{all::*, framework::standard::{Configuration, macros::group}}; // serenity::all::* doesn't work? supposed to export most of the modules but it doesn't lol see: https://docs.rs/serenity/0.12.0/serenity/all/index.html
-
+use serenity::{all::*, framework::standard::{Configuration, macros::group}}; // serenity::all::* doesn't work? supposed to export most of the modules but it doesn't lol. see: https://docs.rs/serenity/0.12.0/serenity/all/index.html
 mod files;
 mod commands;
 
 use crate::commands::misc::ping::*;
 
 struct Handler;
+
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
@@ -17,7 +17,6 @@ impl EventHandler for Handler {
 #[group]
 #[commands(ping)]
 struct General;
-
 
 #[tokio::main]
 async fn main() {
