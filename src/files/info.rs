@@ -4,6 +4,8 @@ pub const PREFIX: &'static str = "-";
 pub const TEST_PREFIX: &'static str = "=";
 pub const EMBED_COLOUR: u32 = 0xff66ab;
 pub const ADMINS: &'static [&str; 3] = &["132638288770105344", "182383793716461570", "97132796560031744"]; // todo: figure out how to integrate this into framework.owners()
+// addendum: framework.owners relies on discord's development teams feature.
+// god knows if i'll get around to using that but line 6 can be removed if i do.
 
 fn is_test() -> bool {
     let test_flag = std::env::args().nth(1);
