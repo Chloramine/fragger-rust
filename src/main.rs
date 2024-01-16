@@ -25,7 +25,12 @@ async fn main() {
     let framework = StandardFramework::new().group(&GENERAL_GROUP);
     framework.configure(
         Configuration::new().with_whitespace(true)
-            .prefix(files::info::prefix())); // todo: incorporate info::ADMINS into .owners()
+            .prefix(files::info::prefix())
+            .owners(files::info::admins())
+            .allow_dm(true)
+            .no_dm_prefix(true)
+            .ignore_bots(true)
+            .ignore_webhooks(true));
     let mut client = Client::builder(&token, intents)
         .framework(framework)
         .event_handler(Handler)

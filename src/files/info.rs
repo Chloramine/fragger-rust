@@ -1,9 +1,15 @@
 use std::env;
+use std::collections::HashSet;
+use serenity::all::UserId;
 
 pub const PREFIX: &'static str = "-";
 pub const TEST_PREFIX: &'static str = "=";
 pub const EMBED_COLOUR: u32 = 0xff66ab;
-pub const ADMINS: (&str, &str, &str) = ("132638288770105344", "182383793716461570", "97132796560031744"); // this was an array and not a tuple. i'd have known that if i read the docs Lol
+pub const ADMINS: [UserId; 3] = [
+    UserId::new(132638288770105344), 
+    UserId::new(182383793716461570), 
+    UserId::new(97132796560031744)
+];
 
 fn is_test() -> bool {
     let test_flag = std::env::args().nth(1);
@@ -33,4 +39,12 @@ pub fn token() -> String {
     } else {
         return env::var("FRAGGER_TEST_TOKEN").unwrap();
     }
+}
+
+pub fn admins() -> HashSet<UserId> {
+    let mut admins_hashset = HashSet::new();
+    for admin in ADMINS.iter() {
+        admins_hashset.insert(*admin);
+    }
+    return admins_hashset
 }
